@@ -5,6 +5,8 @@ shouldBe_ a b = shouldBe (rounded a) (rounded b)
     where
     rounded x = ((fromInteger . truncate) (x * 10000)) / 10000 
 
+t = Item ("apple", 1.20) (Item ("banana", 1.34) Nil)
+
 main = hspec $ do
     describe "total" $ do
         it "should multiply a quantity by a price" $ do
@@ -23,10 +25,13 @@ main = hspec $ do
             showTotal 3095.314 `shouldBe` "3095.31" 
 
     describe "findPrice" $ do
-        let t = Item ("apple", 1.20) (Item ("banana", 1.34) Nil)
         it "should find the price of an item" $ do
             findPrice t "apple" `shouldBe` 1.20
             findPrice t "banana" `shouldBe` 1.34
             findPrice t "peach" `shouldBe` 0
             
+    describe "cash" $ do 
+        it "given a quantity and a ref, should give a total price" $ do
+            cash t "20 banana"  `shouldBe` "26.80"
+            cash t "10 apple"   `shouldBe` "12.00"
 

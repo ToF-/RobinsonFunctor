@@ -22,5 +22,8 @@ showTotal n =
         l = length m - 2
     in (take l m) ++ "." ++ (drop l m) 
 
+cash :: Items -> String -> String
+cash t s = let [q,r] = words s in showTotal $ total (read q) (findPrice t r)
+
 
 
