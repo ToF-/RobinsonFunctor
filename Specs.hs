@@ -9,3 +9,4 @@ main = hspec $ do
     describe "total" $ do
         it "should multiply a quantity by a price" $ do
             total 3 1.20 `shouldBe_` 3.60
+
