@@ -10,3 +10,16 @@ main = hspec $ do
         it "should multiply a quantity by a price" $ do
             total 3 1.20 `shouldBe_` 3.60
 
+    describe "showTotal" $ do
+        it "should display properly the total" $ do
+            showTotal 3.00 `shouldBe` "3.00"
+            showTotal 1.00 `shouldBe` "1.00"
+            showTotal 1.24 `shouldBe` "1.24"
+            showTotal 3.02 `shouldBe` "3.02"
+            showTotal 3.02243 `shouldBe` "3.02"
+            showTotal 3.2     `shouldBe` "3.20"
+            showTotal 3.09143 `shouldBe` "3.09"
+            showTotal 3.09543 `shouldBe` "3.10" 
+            showTotal 3095.314 `shouldBe` "3095.31" 
+            
+
