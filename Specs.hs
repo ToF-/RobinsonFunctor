@@ -21,5 +21,12 @@ main = hspec $ do
             showTotal 3.09143 `shouldBe` "3.09"
             showTotal 3.09543 `shouldBe` "3.10" 
             showTotal 3095.314 `shouldBe` "3095.31" 
+
+    describe "findPrice" $ do
+        let t = Item ("apple", 1.20) (Item ("banana", 1.34) Nil)
+        it "should find the price of an item" $ do
+            findPrice t "apple" `shouldBe` 1.20
+            findPrice t "banana" `shouldBe` 1.34
+            findPrice t "peach" `shouldBe` 0
             
 
