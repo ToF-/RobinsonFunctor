@@ -15,15 +15,14 @@ data Result a = Result a
 
 cash q p = fromInteger q * p
 
-findPrice items s = case findItem items s of
-    Result item -> Result $ snd item
-    NoResult    -> NoResult
+findPrice items s = mapf snd $ findItem items s
+
+total items q s = mapf (cash q) $ findPrice items s
 
 findItem (It (code,item) items) s | code == s = Result item
                                   | otherwise = findItem items s 
 findItem Nil _ = NoResult
 
-total items q s = case findPrice items s of
-    Result p -> Result $ cash q p
-    NoResult -> NoResult
     
+mapf f (Result x) = Result $ f x
+mapf f NoResult   = NoResult
