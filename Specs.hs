@@ -22,3 +22,6 @@ main = hspec $ do
             let items' = itemMap (\(c,(l,p)) -> (c,(map toUpper l,p))) items
             items' `shouldBe` 
               It ("AP",("APPLE",1.20)) (It ("BA",("BANANA",1.89)) Nil)
+            let items' = itemMap (\(c,(l,p)) -> (c,(l,p+0.1))) items
+            items' `shouldBe` 
+              It ("AP",("apple",1.30)) (It ("BA",("banana",1.99)) Nil)
