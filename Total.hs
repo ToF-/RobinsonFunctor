@@ -8,6 +8,7 @@ type Item = (Code,(Label,Price))
 
 data ItemList = It Item ItemList
               | Nil
+    deriving (Show, Eq)
 
 data Result a = Result a 
             | NoResult
@@ -23,3 +24,6 @@ findItem Nil _ = NoResult
     
 resultMap f (Result x) = Result $ f x
 resultMap f NoResult   = NoResult
+
+itemMap f (It item items) = It (f item) (itemMap f items)
+itemMap _ Nil = Nil
