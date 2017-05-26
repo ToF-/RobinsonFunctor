@@ -25,3 +25,13 @@ main = hspec $ do
             let items' = itemMap (\(c,(l,p)) -> (c,(l,p+0.1))) items
             items' `shouldBe` 
               It ("AP",("apple",1.30)) (It ("BA",("banana",1.99)) Nil)
+
+    describe "functionMap" $ do
+        it "should apply a function to a function" $ do
+            let f = const 41
+                f'= functionMap (+1) f
+            f' 0 `shouldBe` 42 
+            let p = (\(c,(l,p)) -> (c,(l,p+0.1)))
+                u = (\(c,(l,p)) -> (c,(map toUpper l,p)))
+                f = functionMap p $ functionMap u $ id
+            f ("PE",("peach",3.0)) `shouldBe` ("PE",("PEACH",3.1))

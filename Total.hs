@@ -27,3 +27,5 @@ resultMap f NoResult   = NoResult
 
 itemMap f (It item items) = It (f item) (itemMap f items)
 itemMap _ Nil = Nil
+
+functionMap f g = f . g 
