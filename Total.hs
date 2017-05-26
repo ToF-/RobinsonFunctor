@@ -13,11 +13,8 @@ data Result a = Result a
             | NoResult
     deriving (Show, Eq)
 
-cash q p = fromInteger q * p
 
-findPrice items s = mapf snd $ findItem items s
-
-total items q s = mapf (cash q) $ findPrice items s
+total items q s = mapf ((fromInteger q)*) $ mapf snd $ findItem items s
 
 findItem (It (code,item) items) s | code == s = Result item
                                   | otherwise = findItem items s 
