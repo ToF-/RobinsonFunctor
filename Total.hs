@@ -22,3 +22,8 @@ findPrice items s = case findItem items s of
 findItem (It (code,item) items) s | code == s = Result item
                                   | otherwise = findItem items s 
 findItem Nil _ = NoResult
+
+total items q s = case findPrice items s of
+    Result p -> Result $ cash q p
+    NoResult -> NoResult
+    
