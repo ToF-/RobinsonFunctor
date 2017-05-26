@@ -15,9 +15,9 @@ data Result a = Result a
 
 cash q p = fromInteger q * p
 
-findPrice (It (code,item) items) s | code == s = Result $ snd item
-                                   | otherwise = findPrice items s 
-findPrice Nil _ = NoResult
+findPrice items s = case findItem items s of
+    Result item -> Result $ snd item
+    NoResult    -> NoResult
 
 findItem (It (code,item) items) s | code == s = Result item
                                   | otherwise = findItem items s 
