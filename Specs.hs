@@ -7,9 +7,11 @@ main = hspec $ do
 
     describe "total" $ do
         it "should return total price for a quantity and an item" $ do
-            total items 10 "BA" `shouldBe` Just 18.90
+            total items "10" "BA" `shouldBe` Just 18.90
         it "should not fail or give 0 when item not found" $ do
-          total items 10 "PE" `shouldBe` Nothing 
+          total items "10" "PE" `shouldBe` Nothing 
+        it "should not fail or give 0 when quantity not parsed" $ do
+          total items "foo" "BA" `shouldBe` Nothing 
 
     describe "readQuantity" $ do
         it "should read a quantity from a String" $ do
